@@ -39,6 +39,13 @@ ln -s "$(pwd)/my_test.sh" test
 ```bash
 ./test &
 ```
+
+Проверяем наш процесс.
+```bash
+pgrep -a test
+```
+![image](https://github.com/user-attachments/assets/9cc83381-97aa-4169-90ba-23b718556f5c)
+
 ***
 
 
