@@ -139,7 +139,7 @@ chmod +x /home/magomed/test/process_status.sh
 [Папка с service файлом и timer](https://github.com/Zubaev/Test_Effective-Mobile/tree/main/systemd)
 
 Прописываем в файле [monitor_process.service](https://github.com/Zubaev/Test_Effective-Mobile/blob/main/systemd/monitor_process.service) путь с крипту.
-Устанавливаем таймер на исполнение скрипта каждые 60 секунд.
+Устанавливаем [таймер](https://github.com/Zubaev/Test_Effective-Mobile/blob/main/systemd/monitor_process.timer) на исполнение скрипта каждые 60 секунд.
 
 
 Остановим наш процесс и проверим работает ли он как видно по скриншоту процесс не запущен.
