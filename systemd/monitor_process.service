@@ -1,0 +1,9 @@
+[Unit]
+Description=Process Monitoring Script
+
+[Service]
+Type=oneshot
+ExecStart=/home/magomed/test/process_status.sh
+
+[Install]
+WantedBy=multi-user.target

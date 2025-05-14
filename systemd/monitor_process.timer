@@ -1,0 +1,9 @@
+[Unit]
+Description=Run process monitoring script every minute
+
+[Timer]
+OnUnitActiveSec=60s
+Unit=monitor_process.service
+
+[Install]
+WantedBy=timers.target
