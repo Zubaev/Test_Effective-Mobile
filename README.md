@@ -60,7 +60,7 @@ pgrep -a test
 
 Чтобы отслеживать, в каком состоянии был процесс раньше, и понимать, перезапускался ли он, добавим дополнительный файл — `STATUS_FILE`.
 
-bash```
+```bash
 PROCESS_NAME="test"
 URL="https://test.com/monitoring/test/api"
 LOG_FILE="/var/log/monitoring.log"
