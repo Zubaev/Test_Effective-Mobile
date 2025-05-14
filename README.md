@@ -51,3 +51,5 @@ pgrep -a test
 ***
 
 # Создание файла 
+
+Создаем [скрипт](https://github.com/Zubaev/Test_Effective-Mobile/blob/main/process_status.sh) мониторинга процесса.
