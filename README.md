@@ -141,16 +141,17 @@ chmod +x /home/magomed/test/process_status.sh
 Прописываем в файле [monitor_process.service](https://github.com/Zubaev/Test_Effective-Mobile/blob/main/systemd/monitor_process.service) путь с крипту.
 Устанавливаем таймер на исполнение скрипта каждые 60 секунд.
 
-Проверяем работоспособность
-![image](https://github.com/user-attachments/assets/47f28989-3b4d-4325-a217-54c0f22021d6)
 
 Остановим наш процесс и проверим работает ли он как видно по скриншоту процесс не запущен.
+
 ![image](https://github.com/user-attachments/assets/64dba8e9-3bf0-4547-afb5-6c0133632bbb)
 
 Запустим его повторно и проверим лог файл
+
 ![image](https://github.com/user-attachments/assets/97859ced-e1c5-4fdf-9c3b-dafe8e2673c2)
 
 Как видим в лог файле появилась надпись о перезапуске процесса.
+
 ![image](https://github.com/user-attachments/assets/ce124bab-b5e7-4634-a019-1b7d8f08532d)
 
 
