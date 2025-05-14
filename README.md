@@ -141,6 +141,8 @@ chmod +x /home/magomed/test/process_status.sh
 Прописываем в файле [monitor_process.service](https://github.com/Zubaev/Test_Effective-Mobile/blob/main/systemd/monitor_process.service) путь с крипту.
 Устанавливаем [таймер](https://github.com/Zubaev/Test_Effective-Mobile/blob/main/systemd/monitor_process.timer) на исполнение скрипта каждые 60 секунд.
 
+![image](https://github.com/user-attachments/assets/a7620457-fd95-4b52-b5d1-4b7ba70500d5)
+
 
 Остановим наш процесс и проверим работает ли он как видно по скриншоту процесс не запущен.
 
