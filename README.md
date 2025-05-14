@@ -53,3 +53,19 @@ pgrep -a test
 # Создание файла 
 
 Создаем [скрипт](https://github.com/Zubaev/Test_Effective-Mobile/blob/main/process_status.sh) мониторинга процесса.
+
+Разберем скрипт по частям.
+
+Сохраним все необходимые значения в переменные для удобства их последующего использования.
+
+Чтобы отслеживать, в каком состоянии был процесс раньше, и понимать, перезапускался ли он, добавим дополнительный файл — `STATUS_FILE`.
+
+bash```
+PROCESS_NAME="test"
+URL="https://test.com/monitoring/test/api"
+LOG_FILE="/var/log/monitoring.log"
+
+STATUS_FILE="/var/tmp/process_status_$PROCESS_NAME"
+```
+
+
