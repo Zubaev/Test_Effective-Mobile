@@ -68,4 +68,57 @@ LOG_FILE="/var/log/monitoring.log"
 STATUS_FILE="/var/tmp/process_status_$PROCESS_NAME"
 ```
 
+Далее необходимо проверить, существует ли уже такой файл. Если нет — создаём его и устанавливаем начальный статус unknown.
+
+
+```bash
+if [ ! -f "$STATUS_FILE" ]; then
+    echo "unknown" > "$STATUS_FILE"
+fi
+```
+
+Затем проверяем, запущен ли процесс. Если да — сохраняем в переменную `CURRENT_STATUS` значение `running`, если нет — `stopped`.
+
+```bash
+if pgrep -x "$PROCESS_NAME" > /dev/null; then
+    CURRENT_STATUS="running"
+else
+    CURRENT_STATUS="stopped"
+fi
+```
+
+Вводим промежуточную переменную, в которую записываем предыдущее состояние процесса.
+
+```bash
+PREVIOUS_STATUS=$(cat "$STATUS_FILE")
+```
+
+Если процесс сейчас запущен, а в файле указано предыдущее состояние stopped, значит, произошёл перезапуск. Тогда добавляем в лог сообщение с датой, временем и отметкой о перезапуске.
+
+```bash
+if [ "$CURRENT_STATUS" == "running" ] && [ "$PREVIOUS_STATUS" == "stopped" ]; then
+    echo "$(date '+%Y-%m-%d %H:%M:%S') Процесс '$PROCESS_NAME' был перезапущен." >> "$LOG_FILE"
+fi
+```
+Если процесс запущен и не перезапускался, мы отправляем `curl`-запрос по адресу `https://test.com/monitoring/test/api`. Я ограничил время запроса до 5 секунд, чтобы скрипт выполнялся быстрее.
+
+```bash
+if [ "$CURRENT_STATUS" == "running" ]; then
+    RESPONSE=$(curl --silent --output /dev/null --write-out "%{http_code}" --insecure --max-time 5 "$URL" 2>/dev/null)
+```
+
+Если ответ от сервера неуспешный, записываем текущие дату, время и соответствующую запись в лог-файл.
+
+```bash
+ if [ "$RESPONSE" != "200" ]; then
+        echo "$(date '+%Y-%m-%d %H:%M:%S') Сервер мониторинга недоступен (HTTP $RESPONSE)." >> "$LOG_FILE"
+    fi
+fi
+```
+
+Обновляем состояние файла в `STATUS_FILE` чтобы при следующем выполнении скрипт знал в прошлом состоянии процесса.
+
+```bash
+echo "$CURRENT_STATUS" > "$STATUS_FILE"
+```
 
